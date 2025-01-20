@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:quizapp/startquiz.dart';
+// import 'package:quizapp/InstructionScreen.dart';
+import 'package:quizapp/SplashScreen.dart';
+// import 'package:quizapp/startquiz.dart';
+
+late Size mq;
 
 void main() {
   runApp(const MyApp());
@@ -18,7 +22,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const StartQuiz()
+      home: const Splashscreen()
     );
   }
 }

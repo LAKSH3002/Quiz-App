@@ -51,6 +51,7 @@ class _ResultsscreenState extends State<Resultsscreen> {
               ),
               ...widget.correctAnswers.map((question) => ListTile(
                     title: Text(question.description),
+                    
                   )),
               const SizedBox(height: 16),
               const Text(
@@ -63,6 +64,10 @@ class _ResultsscreenState extends State<Resultsscreen> {
               const SizedBox(height: 16),
               Center(
                 child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.red,
+                    foregroundColor: Colors.yellow
+                  ),
                   onPressed: () {
                     Navigator.push(
                     context,

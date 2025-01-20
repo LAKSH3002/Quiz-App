@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
-import 'package:quizapp/InstructionScreen.dart';
+// import 'package:quizapp/InstructionScreen.dart';
 import 'package:quizapp/QuizScreen.dart';
 
 class StartQuiz extends StatefulWidget {
@@ -47,10 +47,10 @@ class _StartQuizState extends State<StartQuiz> {
               onPressed: (){
                 Navigator.of(context).push(MaterialPageRoute(
                 builder: (BuildContext context) =>
-                Instructionscreen()));
+                QuizScreen()));
               },
               child: const Text('Start Quiz Now!!',
-              style: TextStyle(fontSize: 28),
+              style: TextStyle(fontSize: 25, letterSpacing: 2),
               ),
             ),
           ],

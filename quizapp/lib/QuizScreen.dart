@@ -33,7 +33,7 @@ class _QuizScreenState extends State<QuizScreen> {
       _incorrectAnswers.add(question);
     }
 
-    if (_currentQuestionIndex < 4) {
+    if (_currentQuestionIndex < 9) {
       // Assuming there are 5 questions
       setState(() {
         _currentQuestionIndex++;
@@ -94,7 +94,7 @@ class _QuizScreenState extends State<QuizScreen> {
         future: _questionsFuture,
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(child: CircularProgressIndicator());
+            return const Center(child: CircularProgressIndicator());
           } else if (snapshot.hasError) {
             return Center(child: Text("Error: ${snapshot.error}"));
           } else if (snapshot.hasData) {
@@ -102,21 +102,33 @@ class _QuizScreenState extends State<QuizScreen> {
             final question = questions[_currentQuestionIndex];
 
             return Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const SizedBox(height: 30,),
-                
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Text(
-                    "Question ${_currentQuestionIndex + 1}: ${question.description}",
-                    style: TextStyle(fontSize: 18),
+
+              Text('Question Number ${_currentQuestionIndex + 1}:',
+              style: const TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold
+              ),
+              ),
+              const SizedBox(height: 20,),
+                Card(
+                  elevation: 5,
+                  child: Container(
+                    color: Colors.red,
+                    child: Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: Text(
+                        "Q${_currentQuestionIndex + 1}: ${question.description}",
+                        style: const TextStyle(fontSize: 18, color: Colors.white),
+                      ),
+                    ),
                   ),
                 ),
                 ...question.options.map((option) {
                   return ListTile(
-                    title: Text(option.description),
+                    tileColor: Colors.lightGreenAccent,
+                    title: Text(option.description, style: TextStyle(fontSize: 18),),
                     leading: Radio<bool>(
                       value: option.isCorrect,
                       groupValue: null,

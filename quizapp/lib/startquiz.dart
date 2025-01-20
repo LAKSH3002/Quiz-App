@@ -50,7 +50,7 @@ class _StartQuizState extends State<StartQuiz> {
                 builder: (BuildContext context) =>
                 QuizScreen()));
               },
-              child: const Text('Start Quiz Now!!',
+              child: const Text('Start Quiz !!',
               style: TextStyle(fontSize: 25, letterSpacing: 2),
               ),
             ),

@@ -1,4 +1,4 @@
-# Quiz-App
+![img4](https://github.com/user-attachments/assets/2c379a85-f5ee-44ae-a935-e7dc5740cb1c)# Quiz-App
 A quiz app built using flutter framework
 
 The app Operates in the following way
@@ -15,9 +15,13 @@ The app Operates in the following way
 
 6) The result screen shows the score, the questions that were correctly and incorrectly attempted.
 
-![img1](https://github.com/user-attachments/assets/107144fb-5d05-4f65-8fec-2c4ea301477b)
-![img2](https://github.com/user-attachments/assets/d9aa2057-0760-42f7-9fca-841576ab80a5) ![img3](https://github.com/user-attachments/assets/e42888d2-8aad-4cfe-b1cd-dadc3d914969)
-![img4](https://github.com/user-attachments/assets/079d844b-bd3e-4127-9b32-6ac15c185f15) ![img5](https://github.com/user-attachments/assets/407b3101-603d-4886-b0e0-a1daf7bc8041)
+![img1](https://github.com/user-attachments/assets/e361afff-f91e-412d-9800-a710465caf6f)
+![img2](https://github.com/user-attachments/assets/b8162348-e9a9-4d74-a081-913a3783a573)
+![img3](https://github.com/user-attachments/assets/ed08dccb-3789-4d7b-a165-a59cca6e7f7e)
+![img5](https://github.com/user-attachments/assets/edf2c9b1-d6e4-475d-a506-91a2be1565d8)
+![img4](https://github.com/user-attachments/assets/b13a5e4d-ecf1-4be2-ac5f-11dc513c9a22)
+
+
 
 
 

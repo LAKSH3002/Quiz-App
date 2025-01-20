@@ -101,44 +101,60 @@ class _QuizScreenState extends State<QuizScreen> {
             final questions = snapshot.data!;
             final question = questions[_currentQuestionIndex];
 
-            return Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-
-              Text('Question Number ${_currentQuestionIndex + 1}:',
-              style: const TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold
-              ),
-              ),
-              const SizedBox(height: 20,),
-                Card(
-                  elevation: 5,
-                  child: Container(
-                    color: Colors.red,
-                    child: Padding(
-                      padding: const EdgeInsets.all(16.0),
-                      child: Text(
-                        "Q${_currentQuestionIndex + 1}: ${question.description}",
-                        style: const TextStyle(fontSize: 18, color: Colors.white),
+            return Container(
+              color: Colors.lightBlueAccent,
+              child: Column(
+                children: [
+                const SizedBox(height: 20,),
+                Text('Question Number ${_currentQuestionIndex + 1}:',
+                style: const TextStyle(
+                  fontSize: 20,
+                  fontWeight: FontWeight.w500,
+                  color: Colors.brown
+                ),
+                ),
+                const SizedBox(height: 20,),
+                  Card(
+                    elevation: 3,
+                    child: Container(
+                      width: 700,
+                      decoration: BoxDecoration(
+                       color: Colors.red,
+                      borderRadius: BorderRadius.circular(10)
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(12.0),
+                        child: Text(
+                          "Q${_currentQuestionIndex + 1}: ${question.description}",
+                          style: const TextStyle(fontSize: 18, color: Colors.white),
+                        ),
                       ),
                     ),
                   ),
-                ),
-                ...question.options.map((option) {
-                  return ListTile(
-                    tileColor: Colors.lightGreenAccent,
-                    title: Text(option.description, style: TextStyle(fontSize: 18),),
-                    leading: Radio<bool>(
-                      value: option.isCorrect,
-                      groupValue: null,
-                      onChanged: (value) {
-                        _onAnswerSelected(option.isCorrect, question);
-                      },
-                    ),
-                  );
-                }).toList(),
-              ],
+                  ...question.options.map((option) {
+                    return Padding(
+                      padding: const EdgeInsets.only(top: 10, left: 10, right: 10),
+                      child: Container(
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10.0),
+                          color: Colors.white,
+                        ),
+                        child: ListTile(
+                          // tileColor: Colors.lightGreenAccent,
+                          title: Text(option.description, style: TextStyle(fontSize: 18),),
+                          leading: Radio<bool>(
+                            value: option.isCorrect,
+                            groupValue: null,
+                            onChanged: (value) {
+                              _onAnswerSelected(option.isCorrect, question);
+                            },
+                          ),
+                        ),
+                      ),
+                    );
+                  }).toList(),
+                ],
+              ),
             );
           } else {
             return const Center(child: Text("No questions available"));

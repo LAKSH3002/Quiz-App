@@ -35,50 +35,53 @@ class _ResultsscreenState extends State<Resultsscreen> {
         backgroundColor: Colors.green,
       ),
       body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "Your Score: ${widget.score}",
-                style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
-              ),
-              const SizedBox(height: 16),
-              const Text(
-                "You Answered Correctly to the Following Questions:",
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
-              ),
-              ...widget.correctAnswers.map((question) => ListTile(
-                    title: Text(question.description),
-                    
-                  )),
-              const SizedBox(height: 16),
-              const Text(
-                "You Answered Incorrectly to the Following Questions:",
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
-              ),
-              ...widget.incorrectAnswers.map((question) => ListTile(
-                    title: Text(question.description),
-                  )),
-              const SizedBox(height: 16),
-              Center(
-                child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.red,
-                    foregroundColor: Colors.yellow
-                  ),
-                  onPressed: () {
-                    Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                    builder: (context) => const StartQuiz()
-                    ),);
-                  },
-                  child: const Text("Back to Quiz"),
+        child: Container(
+          color: Colors.lightBlueAccent,
+          child: Padding(
+            padding: const EdgeInsets.only(left: 10, top: 10),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "Your Score: ${widget.score}",
+                  style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                 ),
-              ),
-            ],
+                const SizedBox(height: 16),
+                const Text(
+                  "You Answered Correctly to the Following Questions:",
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+                ),
+                ...widget.correctAnswers.map((question) => ListTile(
+                      title: Text("--> "+question.description, style: TextStyle(color: Colors.brown),),
+                      
+                    )),
+                const SizedBox(height: 16),
+                const Text(
+                  "You Answered Incorrectly to the Following Questions:",
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+                ),
+                ...widget.incorrectAnswers.map((question) => ListTile(
+                      title: Text("--> "+question.description,  style: TextStyle(color: Colors.brown),),
+                    )),
+                const SizedBox(height: 16),
+                Center(
+                  child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.red,
+                      foregroundColor: Colors.yellow
+                    ),
+                    onPressed: () {
+                      Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                      builder: (context) => const StartQuiz()
+                      ),);
+                    },
+                    child: const Text("Back to Quiz"),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),

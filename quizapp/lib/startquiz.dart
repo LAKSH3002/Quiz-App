@@ -42,7 +42,8 @@ class _StartQuizState extends State<StartQuiz> {
               style: ElevatedButton.styleFrom(
                 backgroundColor: Colors.green,
                 foregroundColor: Colors.white,
-                shape:BeveledRectangleBorder()
+                shape:BeveledRectangleBorder(),
+                elevation: 4
               ),
               onPressed: (){
                 Navigator.of(context).push(MaterialPageRoute(

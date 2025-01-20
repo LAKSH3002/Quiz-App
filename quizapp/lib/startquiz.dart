@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
+import 'package:flutter/rendering.dart';
+import 'package:flutter/widgets.dart';
+import 'package:quizapp/InstructionScreen.dart';
 import 'package:quizapp/QuizScreen.dart';
 
 class StartQuiz extends StatefulWidget {
@@ -15,21 +19,41 @@ class _StartQuizState extends State<StartQuiz> {
       appBar: AppBar(
       title: const Text('Quiz App',
       style: TextStyle(
-        fontSize: 20,
+        fontSize: 22,
+        color: Colors.white,
         fontWeight: FontWeight.w600
-      ),),
+        ),),
+      iconTheme: const IconThemeData(
+          color: Colors.white
+        ),
       centerTitle: true,
-      backgroundColor: Colors.blue,
+      backgroundColor: Colors.green,
       )
       ,
       body: Center(
-        child: ElevatedButton(
-          onPressed: (){
-            Navigator.of(context).push(MaterialPageRoute(
-            builder: (BuildContext context) =>
-            QuizScreen()));
-          },
-          child: const Text('Start Quiz'),
+        child: Column(
+          children: [
+
+            const SizedBox(height: 100,),
+        
+            Image.asset('images/question.png', height: 280),
+        
+            ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.green,
+                foregroundColor: Colors.white,
+                shape:BeveledRectangleBorder()
+              ),
+              onPressed: (){
+                Navigator.of(context).push(MaterialPageRoute(
+                builder: (BuildContext context) =>
+                Instructionscreen()));
+              },
+              child: const Text('Start Quiz Now!!',
+              style: TextStyle(fontSize: 28),
+              ),
+            ),
+          ],
         ),
       ),
     );

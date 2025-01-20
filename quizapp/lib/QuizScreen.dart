@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:quizapp/ResultsScreen.dart';
 import 'package:quizapp/model/DataFetch.dart';
 import 'package:quizapp/model/QuizQuestion.dart';
 
@@ -11,21 +12,29 @@ class _QuizScreenState extends State<QuizScreen> {
   late Future<List<Question>> _questionsFuture;
   int _currentQuestionIndex = 0;
   int _score = 0;
+  List<Question> _correctAnswers = [];
+  List<Question> _incorrectAnswers = [];
 
   @override
   void initState() {
     super.initState();
-    _questionsFuture = ApiService().fetchQuestions().then((data) =>
-        data.map((item) => Question.fromJson(item as Map<String, dynamic>)).toList());
+    _questionsFuture = ApiService().fetchQuestions().then((data) => data
+        .map((item) => Question.fromJson(item as Map<String, dynamic>))
+        .toList());
   }
 
-  void _onAnswerSelected(bool isCorrect) {
+  void _onAnswerSelected(bool isCorrect, Question question) {
     if (isCorrect) {
       setState(() {
         _score += 10;
+        _correctAnswers.add(question);
       });
+    } else {
+      _incorrectAnswers.add(question);
     }
-    if (_currentQuestionIndex < 4) { // Assuming there are 5 questions
+
+    if (_currentQuestionIndex < 4) {
+      // Assuming there are 5 questions
       setState(() {
         _currentQuestionIndex++;
       });
@@ -38,7 +47,7 @@ class _QuizScreenState extends State<QuizScreen> {
     showDialog(
       context: context,
       builder: (ctx) => AlertDialog(
-        title: Text("Quiz Completed"),
+        title: const Text("Quiz Completed!!"),
         content: Text("You scored $_score points!"),
         actions: [
           TextButton(
@@ -51,21 +60,36 @@ class _QuizScreenState extends State<QuizScreen> {
         ],
       ),
     );
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => Resultsscreen(
+          score: _score,
+          correctAnswers: _correctAnswers,
+          incorrectAnswers: _incorrectAnswers,
+        ),
+      ),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-      title: const Text('Quiz Questions',
-      style: TextStyle(
-        fontSize: 20,
+        title: const Text(
+          'Quiz Questions',
+           style: TextStyle(
+        fontSize: 22,
+        color: Colors.white,
         fontWeight: FontWeight.w600
-      ),),
-      centerTitle: true,
-      backgroundColor: Colors.blue,
+        ),
+        ),
+        iconTheme: const IconThemeData(
+          color: Colors.white
+        ),
+        centerTitle: true,
+        backgroundColor: Colors.green,
       ),
-      
       body: FutureBuilder<List<Question>>(
         future: _questionsFuture,
         builder: (context, snapshot) {
@@ -79,7 +103,10 @@ class _QuizScreenState extends State<QuizScreen> {
 
             return Column(
               crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
+                const SizedBox(height: 30,),
+                
                 Padding(
                   padding: const EdgeInsets.all(16.0),
                   child: Text(
@@ -94,7 +121,7 @@ class _QuizScreenState extends State<QuizScreen> {
                       value: option.isCorrect,
                       groupValue: null,
                       onChanged: (value) {
-                        _onAnswerSelected(option.isCorrect);
+                        _onAnswerSelected(option.isCorrect, question);
                       },
                     ),
                   );
@@ -102,7 +129,7 @@ class _QuizScreenState extends State<QuizScreen> {
               ],
             );
           } else {
-            return Center(child: Text("No questions available"));
+            return const Center(child: Text("No questions available"));
           }
         },
       ),
